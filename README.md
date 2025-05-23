@@ -1,8 +1,9 @@
 # 🛡️ Home SOC in Azure: Threat Detection with Microsoft Sentinel
-
-![image](https://github.com/user-attachments/assets/ff2c1c0e-e3ff-4635-87d0-ef0a4d7273ef)
+![253ac51c-07eb-4a76-9aad-90e5f08489b5](https://github.com/user-attachments/assets/8b5b07d8-5a38-4593-9daa-aa4cac8f1a95)
 
 This project demonstrates the deployment of a **deliberately vulnerable Windows virtual machine** in Microsoft Azure for the purpose of **observing real-world brute-force attacks**. The VM sends logs to Microsoft Sentinel via Log Analytics, and login failure data is enriched with geolocation information to visualize the attack sources on a global map.
+
+![image](https://github.com/user-attachments/assets/ff2c1c0e-e3ff-4635-87d0-ef0a4d7273ef)
 
 ---
 
