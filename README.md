@@ -98,6 +98,8 @@ WindowsEvents
 
 ![image](https://github.com/user-attachments/assets/6be99ecb-e6be-4ec5-b3c7-2d6a9d861e1b)
 
+![image](https://github.com/user-attachments/assets/477f4a82-d193-4fd4-bcef-81155d066b4f)
+
 ---
 
 ### 🧪 Step 3: Test Logging in Log Analytics
