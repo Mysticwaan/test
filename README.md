@@ -92,7 +92,11 @@ WindowsEvents
 | project TimeGenerated, Computer, AttackerIp = cityname, countryname, latitude, longitude
 ![image](https://github.com/user-attachments/assets/f51a8c3e-8cac-408c-ac9a-49a7fcbe432c)
 
+![image](https://github.com/user-attachments/assets/6935df96-e8a7-42f6-925b-74e082b61438)
 
+![image](https://github.com/user-attachments/assets/9be4f14d-8969-4ca7-967f-99a18367c106)
+
+![image](https://github.com/user-attachments/assets/6be99ecb-e6be-4ec5-b3c7-2d6a9d861e1b)
 
 ---
 
