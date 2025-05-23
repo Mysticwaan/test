@@ -34,22 +34,35 @@ This project demonstrates the deployment of a **deliberately vulnerable Windows 
   
  ![image](https://github.com/user-attachments/assets/cfa0a427-d2a8-409a-93fc-86065e89bd9a)
 
+ ![image](https://github.com/user-attachments/assets/10eff5cb-4fc5-4c20-8761-89af73337c07)
+
+
 4. **Disable the Internal Firewall**
    - In the VM:
      - Run `wf.msc` command to open the settings
      - Turn off Windows Defender Firewall for all profiles
      - 
 ![image](https://github.com/user-attachments/assets/3c980cde-af78-4651-a1fe-77d288d22ffc)
+![image](https://github.com/user-attachments/assets/706b7f36-aa07-4715-83b5-a49d42d8382e)
+
 
 > ⚠️ **Warning:** This VM is intentionally insecure. Do not use real credentials. Monitor billing and stop/delete resources when finished.
 
 ---
 
 ### 📈 Step 2: Set Up Log Analytics
+![image](https://github.com/user-attachments/assets/3f880197-81fd-42ec-a221-16130aec36cd)
+![image](https://github.com/user-attachments/assets/32c01519-2f18-4b0e-9ac8-9f19a1e30e74)
+
 
 1. **Create Log Analytics Workspace**
    - Go to "Monitor" → "Logs" → "Create Log Analytics Workspace"
-   - Name it `HoneypotLogs` or similar
+   - Name it `law-soc-lab-0000` or similar
+     
+  ![image](https://github.com/user-attachments/assets/f28d6200-819b-412d-9222-e4d23367368e)
+  ![image](https://github.com/user-attachments/assets/e83a7b8c-8d16-4519-a371-7dda22f8ebb5)
+
+     
 
 2. **Install Azure Monitor Agent**
    - Go to the VM → "Extensions + Applications"
@@ -59,6 +72,27 @@ This project demonstrates the deployment of a **deliberately vulnerable Windows 
 3. **Enable Data Collection Rules**
    - Under "Monitoring" → "Data Collection Rules"
    - Add a new rule to collect **Security Events** from your VM
+  
+     ![image](https://github.com/user-attachments/assets/e28f3762-bab5-4dc7-8f86-ec6a2c408a01)
+     ![image](https://github.com/user-attachments/assets/02ac16f9-cdc4-4bb6-887f-3ca1898049a4)
+     SecurityEvent
+|   where EventID == 4625
+|   where TimeGenerated > ago(1m)
+|   project TimeGenerated, Account, Computer, EventID, Activity, IpAddress
+shows   158 login attempts in the last minute: 
+     ![image](https://github.com/user-attachments/assets/e28720f9-3fbb-405e-971d-651160900e64)
+Getting specific data using these table commands:
+let GeoIPDB_FULL = _GetWatchlist("geoip");
+let WindowsEvents = SecurityEvent
+    | where IpAddress == "185.243.96.116"
+    | where EventID == 4625
+    | order by TimeGenerated desc
+    | evaluate ipv4_lookup(GeoIPDB_FULL, IpAddress, network);
+WindowsEvents
+| project TimeGenerated, Computer, AttackerIp = cityname, countryname, latitude, longitude
+![image](https://github.com/user-attachments/assets/f51a8c3e-8cac-408c-ac9a-49a7fcbe432c)
+
+
 
 ---
 
